@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace HappyShop.Models
+namespace Hs.Models
 {
     public class register
     {

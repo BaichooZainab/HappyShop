@@ -1,32 +1,55 @@
 ﻿@model Category
 
-<form method="post" asp-action="Delete">
-    <input asp-for="Id" hidden />
-
-    <div class="border p-3 mt-4">
-        <div class="row pb-2">
-            <h2 class="text-primary">Delete Category</h2>
-            <hr />
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Delete Category</h2>
+            </div>
         </div>
-        <div class="mb-3">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" disabled />
-
-        </div>
-        <div class="mb-3">
-            <label asp-for="DisplayOrder"></label>
-            <input asp-for="DisplayOrder" class="form-control" disabled />
-
-        </div>
-        <div class="mb-3">
-            <label asp-for="CreatedDateTime"></label>
-            <input asp-for="CreatedDateTime" class="form-control" disabled />
-
-        </div>
-        <button type="submit" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" style="width:150px">Delete</button>
-        <a asp-controller="CategoryController" asp-action="Index"
-           class="btn btn-secondary" style="width:150px">
-            Back to List
-        </a>
     </div>
-</form>
+    <div class="card-body p-4">
+        <form method="post" class="row" asp-action="Delete">
+            <div asp-validation-summary="All"></div>
+            <div class="border p-3">
+                <div asp-validation-summary="All"></div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Name" class="form-control border-0 shadow" disabled />
+                    <label asp-for="Name" class="ms-2"></label>
+
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="DisplayOrder" class="form-control border-0 shadow" disabled />
+                    <label asp-for="DisplayOrder" class="ms-2"></label>
+
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="CreatedDateTime" class="form-control border-0 shadow" disabled />
+                    <label asp-for="CreatedDateTime" class="ms-2"></label>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6 col-md-3">
+                        <button type="submit"
+                                class="btn btn-primary form-control">
+                            Delete
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="CategoryContoller" asp-action="Index" class="btn btn-outline-primary
+border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

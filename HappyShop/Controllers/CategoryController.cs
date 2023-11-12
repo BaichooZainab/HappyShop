@@ -1,25 +1,27 @@
-﻿using HappyShop.Data;
+﻿
+using Hs.DatabaseAccess;
+using Hs.DatabaseAccess.Repositories.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace HappyShop.Models
+namespace Hs.Models
 {
     public class CategoryContoller : Controller
     {
 
-        private readonly ApplicationDbContext _db;
+        private readonly ICategoryRepository _categoryRepo;
 
-        public CategoryContoller(ApplicationDbContext db)
+        public CategoryContoller(ICategoryRepository db)
         {
 
-            _db = db;
+            _categoryRepo = db;
 
         }
 
         public IActionResult Index()
         {
 
-            IEnumerable<Category> objCategoryList = _db.Categories;
+            IEnumerable<Category> objCategoryList = _categoryRepo.GetAll();
             //or instead of var you can also use List (preferred)
             // List<Category> objCategoryList = _db.Categories.ToList(); 
 
@@ -45,8 +47,8 @@ namespace HappyShop.Models
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _categoryRepo.Add(obj);
+                _categoryRepo.Save();
                 TempData["success"] = "Category created successfully";
 
                 return RedirectToAction("Index");
@@ -62,7 +64,7 @@ namespace HappyShop.Models
             {
                 return NotFound();
             }
-            var categoryFromDb = _db.Categories.Find(id);
+            var categoryFromDb = _categoryRepo.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -83,8 +85,8 @@ namespace HappyShop.Models
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _categoryRepo.Update(obj);
+                _categoryRepo.Save();
                 TempData["success"] = "Category Updated successfully";
 
                 return RedirectToAction("Index");
@@ -99,7 +101,7 @@ namespace HappyShop.Models
             {
                 return NotFound();
             }
-            var categoryFromDb = _db.Categories.Find(id);
+            var categoryFromDb = _categoryRepo.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -113,15 +115,15 @@ namespace HappyShop.Models
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Categories.Find(id);
+            var obj = _categoryRepo.Get(u => u.Id == id);
 
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _categoryRepo.Remove(obj);
+            _categoryRepo.Save();
             TempData["success"] = "Category deleted successfully";
 
             return RedirectToAction("Index");
