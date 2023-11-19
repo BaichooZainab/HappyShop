@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 
-namespace HappyShop.Controllers
+namespace HappyShop.Areas.Customer.Controllers
 {
-    public class logincontroler : Controller
+    [Area("Customer")]
+    public class loginController : Controller
     {
         public IActionResult Login()
         {

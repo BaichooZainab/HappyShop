@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Hs.DatabaseAccess.Repositories.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IProductRepository : IRepository<Product>
     {
-        void Update(Category obj);
+        void Update(Product obj);
       
     }
 }

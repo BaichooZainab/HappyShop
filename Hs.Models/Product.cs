@@ -14,21 +14,23 @@ namespace Hs.Models
         [DisplayName("Product Name")]
         public string pname { get; set; }
 
+        [Required]
         [DisplayName("Product Description")]
         public string pdesc { get; set; }
 
+        [Required]
         [DisplayName("Quantity on Hand")]
         [Range(1, 100, ErrorMessage = "Quantity on Hand must be in range of 1 - 100 only!!")]
         public int Quantity { get; set; }
 
+        [Required]
         [DisplayName("Price")]
-        
+        [Range(1, 10000, ErrorMessage = "Price out of range")]
         public int price { get; set; }
 
+        [Required]
         [DisplayName("Brand Name")]
         public string brandname { get; set; }
 
-        [DisplayName("Created Date & Time")]
-        public DateTime CreatedDateTime { get; set; } = DateTime.Now;
     }
 }

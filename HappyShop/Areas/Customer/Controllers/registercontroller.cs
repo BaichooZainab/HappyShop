@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 
-namespace HappyShop.Controllers
+namespace HappyShop.Areas.Customer.Controllers
 {
-    public class registercontroler : Controller
+    [Area("Customer")]
+    public class registercontroller : Controller
     {
         public IActionResult register()
         {

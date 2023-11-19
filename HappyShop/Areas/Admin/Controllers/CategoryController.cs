@@ -1,27 +1,24 @@
-﻿
-using Hs.DatabaseAccess;
-using Hs.DatabaseAccess.Repositories.IRepository;
+﻿using Hs.DatabaseAccess;
+using Hs.DatabaseAccess.Repository.IRepository;
+using Hs.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Hs.Models
+namespace HappyShop.Areas.Admin.Controllers
 {
-    public class CategoryContoller : Controller
+    [Area("Admin")]
+    public class CategoryController : Controller
     {
-
-        private readonly ICategoryRepository _categoryRepo;
-
-        public CategoryContoller(ICategoryRepository db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-
-            _categoryRepo = db;
-
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
 
-            IEnumerable<Category> objCategoryList = _categoryRepo.GetAll();
+            IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
             //or instead of var you can also use List (preferred)
             // List<Category> objCategoryList = _db.Categories.ToList(); 
 
@@ -47,8 +44,8 @@ namespace Hs.Models
 
             if (ModelState.IsValid)
             {
-                _categoryRepo.Add(obj);
-                _categoryRepo.Save();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
 
                 return RedirectToAction("Index");
@@ -64,7 +61,7 @@ namespace Hs.Models
             {
                 return NotFound();
             }
-            var categoryFromDb = _categoryRepo.Get(u => u.Id == id);
+            var categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -85,8 +82,8 @@ namespace Hs.Models
             }
             if (ModelState.IsValid)
             {
-                _categoryRepo.Update(obj);
-                _categoryRepo.Save();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Updated successfully";
 
                 return RedirectToAction("Index");
@@ -101,7 +98,7 @@ namespace Hs.Models
             {
                 return NotFound();
             }
-            var categoryFromDb = _categoryRepo.Get(u => u.Id == id);
+            var categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -115,15 +112,13 @@ namespace Hs.Models
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _categoryRepo.Get(u => u.Id == id);
-
+            var obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-
-            _categoryRepo.Remove(obj);
-            _categoryRepo.Save();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
 
             return RedirectToAction("Index");
