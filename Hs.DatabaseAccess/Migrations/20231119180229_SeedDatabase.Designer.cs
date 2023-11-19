@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hs.DatabaseAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231112121047_AddCategory")]
-    partial class AddCategory
+    [Migration("20231119180229_SeedDatabase")]
+    partial class SeedDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,21 +51,21 @@ namespace Hs.DatabaseAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(6915),
+                            CreatedDateTime = new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1224),
                             DisplayOrder = 1,
                             Name = "Home Interiors"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(6928),
+                            CreatedDateTime = new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1240),
                             DisplayOrder = 2,
                             Name = "Clothes & wears"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(6931),
+                            CreatedDateTime = new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1242),
                             DisplayOrder = 3,
                             Name = "Computer & tech"
                         });
@@ -79,26 +79,23 @@ namespace Hs.DatabaseAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("brandname")
+                    b.Property<string>("Brandname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("pdesc")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("pname")
+                    b.Property<double>("Prices")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Productname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("price")
-                        .HasColumnType("int");
+                    b.Property<double>("Quantities")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -108,32 +105,29 @@ namespace Hs.DatabaseAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(7259),
-                            Quantity = 20,
-                            brandname = "Ibanez",
-                            pdesc = "This Guiter is electric",
-                            pname = "Guitar",
-                            price = 1250
+                            Brandname = "Ibanez",
+                            Description = "This Guiter is electric",
+                            Prices = 1250.0,
+                            Productname = "Guitar",
+                            Quantities = 20.0
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(7264),
-                            Quantity = 13,
-                            brandname = "Fender",
-                            pdesc = "This Guiter is from Fender",
-                            pname = "Piano",
-                            price = 2550
+                            Brandname = "Fender",
+                            Description = "This Guiter is from Fender",
+                            Prices = 2550.0,
+                            Productname = "Piano",
+                            Quantities = 13.0
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(7267),
-                            Quantity = 4,
-                            brandname = "Gibson Brand, Inc",
-                            pdesc = "This Guiter is from Gibson Brand, Inc",
-                            pname = "Drum",
-                            price = 3450
+                            Brandname = "Gibson Brand, Inc",
+                            Description = "This Guiter is from Gibson Brand, Inc",
+                            Prices = 3450.0,
+                            Productname = "Drum",
+                            Quantities = 4.0
                         });
                 });
 #pragma warning restore 612, 618

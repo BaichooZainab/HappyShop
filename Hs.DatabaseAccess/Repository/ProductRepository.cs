@@ -17,14 +17,11 @@ namespace Hs.DatabaseAccess.Repositories
             _db = db;
         }
 
-        public void Update(Category obj)
-        {
-            _db.Categories.Update(obj);
-        }
+      
 
         public void Update(Product obj)
         {
-            throw new NotImplementedException();
+            _db.Products.Update(obj);
         }
     }
 }

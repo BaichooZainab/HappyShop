@@ -1,5 +1,8 @@
-﻿
+﻿@model IEnumerable<Product>
 
+@{
+    ViewData["Title"] = "Index";
+}
 
 <style>
 
@@ -52,117 +55,33 @@
 <!-- intro -->
 <!-- Products -->
 <section>
-    <div class="container my-5">
-        <header class="mb-4">
-            <h3>New products</h3>
-        </header>
-
+    <div class="card-body p-4">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/cycling tshirt.png" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Exustar Cycling Jerseys E-Cj97 Men</h5>
-                        <p class="card-text">RS 1820.50</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+            @foreach (var obj in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card product-card">
+                       @*  <img src="@Url.Content(obj.image)" alt="Product Image" class="card-img-top product-image"> *@
+                        <div class="card-body">
+                            <h5 class="card-title">@obj.Productname</h5>
+                            <p class="card-text">@obj.Description</p>
+                            <p class="card-text">Price: @obj.Prices</p>
+                            <p class="card-text">Price: @obj.Brandname</p>
+                            <!-- Like Button (Green) -->
+                            <button class="btn btn-outline-success icon-hover">
+                                <i class="bi bi-heart"></i> Like
+                            </button>
+
+                            <!-- Add to Cart Button (Orange) -->
+                            <button class="btn btn-outline-warning icon-hover">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/cycling tshirt2.png" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Exustar Cycling Jerseys E-Cj68 Men</h5>
-                        <p class="card-text">RS 1750.00</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/cap suzuki black.jpg" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">CAP SUZUKI BLACK</h5>
-                        <p class="card-text">RS 290.00</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/monolith combat boots.webp" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Monolith combat boots</h5>
-                        <p class="card-text">RS 2500.00</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/le grand bambino crossbody bag.jpg" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Le Grand Bambino crossbody bag</h5>
-                        <p class="card-text">RS 3670.50</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/vlogo signature reversible belt.jpg" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">TVLogo Signature reversible belt</h5>
-                        <p class="card-text">RS 1200.00</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/gaming headset.jpg" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Gaming Headset 32db Blackbuilt in mic</h5>
-                        <p class="card-text">RS 2700.50</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-                <div class="card w-100 my-2 shadow-2-strong">
-                    <img src="~/images/samsung.webp" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">T-shirts with multiple colors, for men and lady</h5>
-                        <p class="card-text">RS 23000.00</p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
+    </div>
     </div>
 </section>
 <!-- Products -->

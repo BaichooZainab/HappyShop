@@ -1,5 +1,7 @@
-﻿using Hs.Models;
+﻿using Hs.DatabaseAccess.Repository.IRepository;
+using Hs.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace HappyShop.Areas.Customer.Controllers
@@ -7,16 +9,20 @@ namespace HappyShop.Areas.Customer.Controllers
     [Area("Customer")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            
+            IEnumerable<Product> objProductList = _unitOfWork.Product.GetAll();
+            //or instead of var you can also use List (preferred)
+            // List<Product> objProductList = _db.Categories.ToList(); 
+            return View(objProductList);
         }
 
         public IActionResult Privacy()

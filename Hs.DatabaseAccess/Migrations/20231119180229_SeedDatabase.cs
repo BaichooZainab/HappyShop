@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Hs.DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCategory : Migration
+    public partial class SeedDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,12 +34,11 @@ namespace Hs.DatabaseAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    pname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    pdesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    price = table.Column<int>(type: "int", nullable: false),
-                    brandname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Productname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantities = table.Column<double>(type: "float", nullable: false),
+                    Prices = table.Column<double>(type: "float", nullable: false),
+                    Brandname = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,19 +50,19 @@ namespace Hs.DatabaseAccess.Migrations
                 columns: new[] { "Id", "CreatedDateTime", "DisplayOrder", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(6915), 1, "Home Interiors" },
-                    { 2, new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(6928), 2, "Clothes & wears" },
-                    { 3, new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(6931), 3, "Computer & tech" }
+                    { 1, new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1224), 1, "Home Interiors" },
+                    { 2, new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1240), 2, "Clothes & wears" },
+                    { 3, new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1242), 3, "Computer & tech" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "CreatedDateTime", "Quantity", "brandname", "pdesc", "pname", "price" },
+                columns: new[] { "Id", "Brandname", "Description", "Prices", "Productname", "Quantities" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(7259), 20, "Ibanez", "This Guiter is electric", "Guitar", 1250 },
-                    { 2, new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(7264), 13, "Fender", "This Guiter is from Fender", "Piano", 2550 },
-                    { 3, new DateTime(2023, 11, 12, 16, 10, 47, 29, DateTimeKind.Local).AddTicks(7267), 4, "Gibson Brand, Inc", "This Guiter is from Gibson Brand, Inc", "Drum", 3450 }
+                    { 1, "Ibanez", "This Guiter is electric", 1250.0, "Guitar", 20.0 },
+                    { 2, "Fender", "This Guiter is from Fender", 2550.0, "Piano", 13.0 },
+                    { 3, "Gibson Brand, Inc", "This Guiter is from Gibson Brand, Inc", 3450.0, "Drum", 4.0 }
                 });
         }
 

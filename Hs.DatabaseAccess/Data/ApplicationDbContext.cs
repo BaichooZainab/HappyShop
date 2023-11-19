@@ -25,9 +25,9 @@ namespace Hs.DatabaseAccess
 
             // base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>().HasData(
-            new Product { Id = 1, pname = "Guitar", pdesc = "This Guiter is electric", price = 1250, brandname = "Ibanez", Quantity = 20},
-            new Product { Id = 2, pname = "Piano", pdesc = "This Guiter is from Fender", price = 2550, brandname = "Fender", Quantity = 13 },
-            new Product { Id = 3, pname = "Drum", pdesc = "This Guiter is from Gibson Brand, Inc", price = 3450, brandname = "Gibson Brand, Inc", Quantity = 4 }
+            new Product { Id = 1, Productname = "Guitar", Description = "This Guiter is electric", Prices = 1250, Brandname = "Ibanez", Quantities = 20},
+            new Product { Id = 2, Productname = "Piano", Description = "This Guiter is from Fender", Prices = 2550, Brandname = "Fender", Quantities = 13 },
+            new Product { Id = 3, Productname = "Drum", Description = "This Guiter is from Gibson Brand, Inc", Prices = 3450, Brandname = "Gibson Brand, Inc", Quantities = 4 }
             );
         }
     }
