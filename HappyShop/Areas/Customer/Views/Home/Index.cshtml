@@ -67,17 +67,23 @@
                             <p class="card-text">@product.Description</p>
                             <p class="card-text">Price: @product.Prices</p>
                             <p class="card-text">Brandname: @product.Brandname</p>
-                            <!-- Like Button (Green) -->
+                            <!-- Like Button  -->
                             <button class="btn btn-outline-success icon-hover">
                                 <i class="bi bi-heart"></i> Like
                             </button>
 
-                            <!-- Add to Cart Button (Orange) -->
+                            <!-- Add to Cart Button  -->
                             <button class="btn btn-outline-warning icon-hover">
                                 <i class="bi bi-cart-plus"></i> Add to Cart
                             </button>
                         </div>
                     </div>
+                    <div>
+                        <a asp-action="Details" asp-route-productId="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">
+                            Details
+                        </a>
+                    </div>
+
                 </div>
             }
         </div>

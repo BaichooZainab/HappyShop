@@ -1,36 +1,40 @@
-﻿var dataTable;
+﻿
+var dataTable;
 $(document).ready(function () {
     loadDataTable();
 });
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
+
             "url": "/Admin/Product/GetAll"
         },
         "columns": [
+            { "data": "category.name", "width": "10%" },
             { "data": "productname", "width": "25%" },
             { "data": "description", "width": "25%" },
-            { "data": "price", "width": "10%" },
+            { "data": "quantities", "width": "10%" },
+            { "data": "prices", "width": "10%" },
+           
+
             { "data": "brandname", "width": "15%" },
-            { "data": "quantity", "width": "10%" }
-            { "data": "category.name", "width": "10%" },
+
+            { "data": "imageUrl", "width": "10%" },
+
 
             {
                 "data": "id",
                 "render": function (data) {
                     return `
-                        <div class="w-75 btn-group" role="group">
-                        <a href="/Admin/Product/Upsert?id=${data}"
-                        class="btn btn-primary mx-2">
-                        <i class="bi bi-pencil-square"></i> Edit</a>
-
-
-                      <a onClick=Delete('/Admin/Product/Delete/${data}')
-                       class="btn btn-danger mx-2">
-                       <i class="bi bi-trash-fill"></i> Delete</a>
-                       </div>
-                       
-                        `
+<div class="w-75 btn-group" role="group">
+<a href="/Admin/Product/Upsert?id=${data}"
+class="btn btn-primary mx-2">
+<i class="bi bi-pencil-square"></i> Edit</a>
+<a onClick=Delete('/Admin/Product/Delete/${data}')
+class="btn btn-danger mx-2">
+<i class="bi bi-trash-fill"></i> Delete</a>
+</div>
+`
                 },
                 "width": "25%"
             }
@@ -38,7 +42,6 @@ function loadDataTable() {
         ]
     });
 }
-
 
 function Delete(url) {
     Swal.fire({
@@ -51,12 +54,12 @@ function Delete(url) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
+
             $.ajax({
                 url: url,
                 type: 'DELETE',
                 success: function (data) {
                     if (data.success) {
-
                         dataTable.ajax.reload();
                         toastr.success(data.message);
                     }
