@@ -21,7 +21,20 @@ namespace Hs.DatabaseAccess.Repositories
 
         public void Update(Product obj)
         {
-            _db.Products.Update(obj);
+            var objFromDb = _db.Products.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromDb != null)
+            {
+                objFromDb.Productname = obj.Productname;
+                objFromDb.Description = obj.Description;
+                objFromDb.Prices = obj.Prices;
+                objFromDb.Brandname = obj.Brandname;
+                objFromDb.CategoryId = obj.CategoryId;
+                objFromDb.Quantities = obj.Quantities;
+                if (obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+            }
         }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hs.DatabaseAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231119180229_SeedDatabase")]
-    partial class SeedDatabase
+    [Migration("20231126111344_addImageUrlToProduct")]
+    partial class addImageUrlToProduct
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,23 +51,23 @@ namespace Hs.DatabaseAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1224),
+                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 13, 44, 83, DateTimeKind.Local).AddTicks(38),
                             DisplayOrder = 1,
-                            Name = "Home Interiors"
+                            Name = "Guitars"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1240),
+                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 13, 44, 83, DateTimeKind.Local).AddTicks(49),
                             DisplayOrder = 2,
-                            Name = "Clothes & wears"
+                            Name = "Drums"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1242),
+                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 13, 44, 83, DateTimeKind.Local).AddTicks(51),
                             DisplayOrder = 3,
-                            Name = "Computer & tech"
+                            Name = "Piano"
                         });
                 });
 
@@ -83,7 +83,14 @@ namespace Hs.DatabaseAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -99,6 +106,8 @@ namespace Hs.DatabaseAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -106,7 +115,9 @@ namespace Hs.DatabaseAccess.Migrations
                         {
                             Id = 1,
                             Brandname = "Ibanez",
+                            CategoryId = 1,
                             Description = "This Guiter is electric",
+                            ImageUrl = "",
                             Prices = 1250.0,
                             Productname = "Guitar",
                             Quantities = 20.0
@@ -115,7 +126,9 @@ namespace Hs.DatabaseAccess.Migrations
                         {
                             Id = 2,
                             Brandname = "Fender",
-                            Description = "This Guiter is from Fender",
+                            CategoryId = 3,
+                            Description = "This piano is from Fender",
+                            ImageUrl = "",
                             Prices = 2550.0,
                             Productname = "Piano",
                             Quantities = 13.0
@@ -124,11 +137,24 @@ namespace Hs.DatabaseAccess.Migrations
                         {
                             Id = 3,
                             Brandname = "Gibson Brand, Inc",
+                            CategoryId = 2,
                             Description = "This Guiter is from Gibson Brand, Inc",
+                            ImageUrl = "",
                             Prices = 3450.0,
                             Productname = "Drum",
                             Quantities = 4.0
                         });
+                });
+
+            modelBuilder.Entity("Hs.Models.Product", b =>
+                {
+                    b.HasOne("Hs.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

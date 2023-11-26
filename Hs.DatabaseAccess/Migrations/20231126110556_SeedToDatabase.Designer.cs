@@ -4,6 +4,7 @@ using Hs.DatabaseAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hs.DatabaseAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231126110556_SeedToDatabase")]
+    partial class SeedToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,21 +51,21 @@ namespace Hs.DatabaseAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 13, 44, 83, DateTimeKind.Local).AddTicks(38),
+                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 5, 55, 934, DateTimeKind.Local).AddTicks(1408),
                             DisplayOrder = 1,
                             Name = "Guitars"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 13, 44, 83, DateTimeKind.Local).AddTicks(49),
+                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 5, 55, 934, DateTimeKind.Local).AddTicks(1417),
                             DisplayOrder = 2,
                             Name = "Drums"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 13, 44, 83, DateTimeKind.Local).AddTicks(51),
+                            CreatedDateTime = new DateTime(2023, 11, 26, 15, 5, 55, 934, DateTimeKind.Local).AddTicks(1418),
                             DisplayOrder = 3,
                             Name = "Piano"
                         });
@@ -84,10 +87,6 @@ namespace Hs.DatabaseAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -114,7 +113,6 @@ namespace Hs.DatabaseAccess.Migrations
                             Brandname = "Ibanez",
                             CategoryId = 1,
                             Description = "This Guiter is electric",
-                            ImageUrl = "",
                             Prices = 1250.0,
                             Productname = "Guitar",
                             Quantities = 20.0
@@ -125,7 +123,6 @@ namespace Hs.DatabaseAccess.Migrations
                             Brandname = "Fender",
                             CategoryId = 3,
                             Description = "This piano is from Fender",
-                            ImageUrl = "",
                             Prices = 2550.0,
                             Productname = "Piano",
                             Quantities = 13.0
@@ -136,7 +133,6 @@ namespace Hs.DatabaseAccess.Migrations
                             Brandname = "Gibson Brand, Inc",
                             CategoryId = 2,
                             Description = "This Guiter is from Gibson Brand, Inc",
-                            ImageUrl = "",
                             Prices = 3450.0,
                             Productname = "Drum",
                             Quantities = 4.0

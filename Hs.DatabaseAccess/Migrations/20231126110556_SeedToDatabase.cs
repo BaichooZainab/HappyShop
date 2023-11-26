@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Hs.DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class SeedDatabase : Migration
+    public partial class SeedToDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,6 +34,7 @@ namespace Hs.DatabaseAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     Productname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantities = table.Column<double>(type: "float", nullable: false),
@@ -43,6 +44,12 @@ namespace Hs.DatabaseAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -50,30 +57,35 @@ namespace Hs.DatabaseAccess.Migrations
                 columns: new[] { "Id", "CreatedDateTime", "DisplayOrder", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1224), 1, "Home Interiors" },
-                    { 2, new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1240), 2, "Clothes & wears" },
-                    { 3, new DateTime(2023, 11, 19, 22, 2, 29, 282, DateTimeKind.Local).AddTicks(1242), 3, "Computer & tech" }
+                    { 1, new DateTime(2023, 11, 26, 15, 5, 55, 934, DateTimeKind.Local).AddTicks(1408), 1, "Guitars" },
+                    { 2, new DateTime(2023, 11, 26, 15, 5, 55, 934, DateTimeKind.Local).AddTicks(1417), 2, "Drums" },
+                    { 3, new DateTime(2023, 11, 26, 15, 5, 55, 934, DateTimeKind.Local).AddTicks(1418), 3, "Piano" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Brandname", "Description", "Prices", "Productname", "Quantities" },
+                columns: new[] { "Id", "Brandname", "CategoryId", "Description", "Prices", "Productname", "Quantities" },
                 values: new object[,]
                 {
-                    { 1, "Ibanez", "This Guiter is electric", 1250.0, "Guitar", 20.0 },
-                    { 2, "Fender", "This Guiter is from Fender", 2550.0, "Piano", 13.0 },
-                    { 3, "Gibson Brand, Inc", "This Guiter is from Gibson Brand, Inc", 3450.0, "Drum", 4.0 }
+                    { 1, "Ibanez", 1, "This Guiter is electric", 1250.0, "Guitar", 20.0 },
+                    { 2, "Fender", 3, "This piano is from Fender", 2550.0, "Piano", 13.0 },
+                    { 3, "Gibson Brand, Inc", 2, "This Guiter is from Gibson Brand, Inc", 3450.0, "Drum", 4.0 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Categories");
         }
     }
 }
