@@ -3,7 +3,7 @@
 <form method="post">
     <div class="card shadow border-0 mt-4">
 
-        <div class="card-header bg-secondary bg-gradient text-light py-4">
+        <div class="card-header bg-dark bg-gradient text-light py-4">
             <div class="row">
                 <div class="col-12 text-center">
                     <h3 class="text-white text-uppercase">@Model.Productname</h3>
@@ -41,20 +41,17 @@
                             </h6>
                         </div>
 
-
-                     
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                Price:
+                                <span>
+                                    @Model.Prices
+                                </span>
+                            </h6>
                         </div>
-                        <div class="row text-center ps-2">
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>Price</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Prices</div>
-                            </div>
 
-                        </div>
                         <div class="row pl-2 my-3">
-                            <p class="text-secondary lh-sm">@Html.Raw(Model.Description)</p>
+                            <p class="text-success lh-sm">@Html.Raw(Model.Description)</p>
                         </div>
                         <div class="row pl-2 mb-3">
                             <div class="col-md-4">
@@ -70,14 +67,21 @@
                             </div>
                         </div>
 
+
                         <div class="row">
                             <div class="col-12 col-md-6 pb-1">
-                                <button type="submit" disabled
+                                <button type="submit"
                                         class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
-                                    Add to Cart (Comming Soon...)
+                                    Add to Cart
                                 </button>
                             </div>
                         </div>
+                     
+                     </div>
+                       
+
+                  
+
                 </div>
 
             </div>

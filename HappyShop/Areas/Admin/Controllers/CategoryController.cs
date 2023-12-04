@@ -1,12 +1,15 @@
 ﻿using Hs.DatabaseAccess;
 using Hs.DatabaseAccess.Repository.IRepository;
 using Hs.Models;
+using Hs.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace HappyShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -4,18 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
 
-    .icon-hover:hover {
-        border-color: #3b71ca !important;
-        background-color: white !important;
-    }
-
-        .icon-hover:hover i {
-            color: #3b71ca !important;
-        }
-
-</style>
 
 <!--  intro  -->
 <section class="mt-3">
@@ -72,13 +61,14 @@
                                 <i class="bi bi-heart"></i> Like
                             </button>
 
+
                             <!-- Add to Cart Button  -->
                             <button class="btn btn-outline-warning icon-hover">
                                 <i class="bi bi-cart-plus"></i> Add to Cart
                             </button>
                         </div>
                     </div>
-                    <div>
+                    <div class="mt-4 mb-4">
                         <a asp-action="Details" asp-route-productId="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">
                             Details
                         </a>
@@ -92,59 +82,55 @@
 </section>
 <!-- Products -->
 <!-- Feature -->
-<section class="">
-    <div class="container">
-        <div class="row gy-4">
-         @*    <div class="col-lg-6">
-                <div class="card-banner bg-gray h-100" style="
-                                                      min-height: 200px;
-                                                      background-size: cover;
-                                                      background-position: center;
-                                                      width: 100%;
-                                                      background-repeat: no-repeat;
-                                                      top: 50%;
-                                                      background-image: url('https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/banners/banner-item2.webp');">
-                    <div class="p-3 p-lg-5" style="max-width: 70%;">
-                        <h3 class="text-dark">Best products & brands in our store at 80% off</h3>
-                        <p>That's true but not always</p>
-                        <button class="btn btn-warning shadow-0" href="#"> Claim offer </button>
-                    </div>
-                </div>
-            </div> *@
-            <div class="col-lg-6">
-                <div class="row mb-3 mb-sm-4 g-3 g-sm-4">
-                    <div class="col-6 d-flex">
-                        <div class="card w-100 bg-primary" style="min-height: 200px;">
-                            <div class="card-body">
-                                <h5 class="text-white">Gaming toolset</h5>
-                                <p class="text-white-50">Technology for cyber sport</p>
-                                <a class="btn btn-outline-light btn-sm" href="#">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 d-flex">
-                        <div class="card w-100 bg-primary" style="min-height: 200px;">
-                            <div class="card-body">
-                                <h5 class="text-white">Quality sound</h5>
-                                <p class="text-white-50">All you need for music</p>
-                                <a class="btn btn-outline-light btn-sm" href="#">Learn more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- row.// -->
+<section class="" style="background-color:white">
+    <div class="container text-dark pt-3">
+        <header class="pt-4 pb-3">
+            <h3>Why choose us</h3>
+        </header>
 
-                <div class="card bg-success" style="min-height: 200px;">
-                    <div class="card-body">
-                        <h5 class="text-white">Buy 2 items, With special gift</h5>
-                        <p class="text-white-50" style="max-width: 400px;">Buy one, get one free marketing strategy helps your business improves the brand by sharing the profits</p>
-                        <a class="btn btn-outline-light btn-sm" href="#">Learn more</a>
-                    </div>
-                </div>
+        <div class="row mb-4">
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+                    <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+                        <i class="bi bi-camera fa-2x fa-fw text-primary floating"></i>
+                    </span>
+                    <figcaption class="info">
+                        <h6 class="title">Reasonable prices</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
             </div>
-            <!-- col.// -->
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+                    <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+                        <i class="bi bi-star fa-2x fa-fw text-primary floating"></i>
+                    </span>
+                    <figcaption class="info">
+                        <h6 class="title">Best quality</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+ 
+
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+                    <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+                        <i class="bi bi-box fa-2x fa-fw text-primary floating"></i>
+                    </span>
+                    <figcaption class="info">
+                        <h6 class="title">Thousand items</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
         </div>
-        <!-- row.// -->
     </div>
     <!-- container end.// -->
 </section>
