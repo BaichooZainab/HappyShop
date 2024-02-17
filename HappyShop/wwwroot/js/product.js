@@ -19,7 +19,13 @@ function loadDataTable() {
 
             { "data": "brandname", "width": "15%" },
 
-            { "data": "imageUrl", "width": "10%" },
+            {
+                "data": "imageUrl",
+                "render": function (data)
+                {
+                    return `<img src="${data}" alt="Product Image" style="max-width: 100px; max-height: 100px;" />`;
+                },
+                "width": "10%" },
 
 
             {

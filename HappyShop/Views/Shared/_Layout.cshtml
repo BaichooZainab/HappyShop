@@ -1,4 +1,8 @@
 ﻿@using Hs.Utility;
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,49 +43,67 @@
                             </a>
                         </li>
 
+                        @if (User.IsInRole(SD.Role_Customer))
+                    {
+
+                           
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-dark" asp-area="Customer" asp-controller="MyTestimonial"
+                                   asp-action="Index">Add Testimonial</a>
+                            </li>
+                         
+
+                    }
+
                         <li class="nav-item">
-                            <a class="nav-link  btn btn-outline-dark" href="#">About</a>
+                            <a class="nav-link" asp-area="Customer" asp-controller="Cart"
+                               asp-action="Index">
+
+                                @await Component.InvokeAsync("ShoppingCart")
+                            </a>
                         </li>
+
 
                         @if (User.IsInRole(SD.Role_Admin))
-{
+                    {
+
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage Content</a>
+                                <div class="dropdown-menu">
+
+                                    <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Manage Category</a>
+                                    <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Manage Product</a>
+                                    <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Staff" asp-action="Index">Manage Staff</a>
+                                    <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Manage Users</a>
+                                    <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Company" asp-action="Index">Manage Company</a>
+                    
+
+                                </div>
+
+                        </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="ViewTestimonial"
+                                   asp-action="Index">View Testimonials</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register Users</a>
+
+                            </li>
+                    }
 
                         <li class="nav-item">
-                                <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                            <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Order"
+                               asp-action="Index">Manage Order</a>
                         </li>
-                        <li class="nav-item">
-                                <a class="nav-link btn btn-outline-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">View Product</a>
-                        </li>
-
-
-}
-                       
-   @*                      <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Customer Sign In</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="Customer" asp-controller="register" asp-action="register">Register</a>
-                                <a class="dropdown-item" asp-area="Customer" asp-controller="login" asp-action="login">login</a>
-
-                            </div>
-                        </li> *@
-
-         @*                <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-                            <div class="dropdown-menu">
-                          
-                                <a class="dropdown-item" asp-controller="login" asp-action="login">Admin login</a>
-
-                            </div>
-                        </li> *@
 
                     </ul>
 
                     <partial name="_LoginPartial" />
 
-                   @*  <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form> *@
+                 
                 </div>
             </div>
         </nav>

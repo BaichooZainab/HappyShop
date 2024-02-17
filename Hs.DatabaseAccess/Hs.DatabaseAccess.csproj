@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hs.Models\Hs.Models.csproj" />
+    <ProjectReference Include="..\Hs.Utility\Hs.Utility.csproj" />
   </ItemGroup>
 
 </Project>

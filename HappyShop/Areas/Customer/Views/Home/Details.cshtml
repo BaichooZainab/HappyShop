@@ -1,13 +1,15 @@
-﻿@model Product
+﻿@model ShoppingCart
 
 <form method="post">
+    <input hidden asp-for="ProductId" />
+
     <div class="card shadow border-0 mt-4">
 
         <div class="card-header bg-dark bg-gradient text-light py-4">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="text-white text-uppercase">@Model.Productname</h3>
-                    <p class="text-white-50 fw-semibold mb-0">by @Model.Brandname</p>
+                    <h3 class="text-white text-uppercase">@Model.Product.Productname</h3>
+                    <p class="text-white-50 fw-semibold mb-0">by @Model.Product.Brandname</p>
                 </div>
             </div>
         </div>
@@ -24,19 +26,19 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-                        <img src="@Model.ImageUrl" width="100%" class="rounded" />
+                        <img src="@Model.Product.ImageUrl" width="100%" class="rounded" />
                     </div>
                     <div class="col-12 col-lg-6 offset-lg-1">
 
                         <div class="col-12 col-md-6 pb-4">
-                            <span class="badge bg-black">@Model.Category.Name</span>
+                            <span class="badge bg-black">@Model.Product.Category.Name</span>
                         </div>
 
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50  pb-2">
                                 Quantity:
                                 <span >
-                                    @Model.Quantities
+                                    @Model.Product.Quantities
                                 </span>
                             </h6>
                         </div>
@@ -45,13 +47,13 @@
                             <h6 class="text-dark text-opacity-50  pb-2">
                                 Price:
                                 <span>
-                                    @Model.Prices
+                                    @Model.Product.Prices
                                 </span>
                             </h6>
                         </div>
 
                         <div class="row pl-2 my-3">
-                            <p class="text-success lh-sm">@Html.Raw(Model.Description)</p>
+                            <p class="text-success lh-sm">@Html.Raw(Model.Product.Description)</p>
                         </div>
                         <div class="row pl-2 mb-3">
                             <div class="col-md-4">
@@ -60,8 +62,9 @@
                                           id="inputGroup-sizing-default">
                                         Count
                                     </span>
-                                    <input type="number" value="1" class="form-control text-end"
-                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                    <input asp-for="Count" type="number" value="1"
+                                           class="form-control text-end" aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default" />
 
                                 </div>
                             </div>
